@@ -180,6 +180,10 @@ There are alignment features in the base to square it to the extrusion. Try loos
 
 If you have a question, I'm @kierantheman in the Voron Discord. If there's some issue with the design, documentation, etc., please open an issue or PR on GitHub!
 
+## License
+
+[Creative Commons (4.0 International License) Attribution-NonCommercial](https://creativecommons.org/licenses/by-nc/4.0/)
+
 [triple-decky]: https://github.com/gneu42/Triple-Decky
 [springy]: https://github.com/moggieuk/ERCF-Springy
 [sturdy]: https://github.com/sneakytreesnake/SturdyBunnyProject
