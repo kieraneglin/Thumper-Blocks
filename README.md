@@ -159,21 +159,27 @@ sync_gear_current: 50
 ## Troubleshooting
 
 **Servo doesn't engage/disengage**
+
 This is an issue with Springy setup, but you probably have too much spring pretension
 
 **Filament doesn't feed even though the servo is engaged**
+
 Again, check your Springy setup. You probably need _more_ pretension
 
 **Filament path doesn't open fully**
+
 Check that adjacent blocks are aligned properly and not rubbing against each other. You should be able to square the blocks against the extrusion, but worst case you can use a piece of receipt paper as a temporary shim during installation (but this shouldn't be neccessary)
 
 **Rattling sound when another block is feeding**
+
 See above - it's usually from a filament path not opening fully
 
 **Blocks don't seem to bite filament**
+
 The blocks bite the most when the filament has been parked by the software. Don't stress unless filament is actively moving during a print
 
 **Encoder hits the base**
+
 There are alignment features in the base to square it to the extrusion. Try loosening the block and pushing it away from the encoder, using _that_ alignment feature to square it, and tightening it back down
 
 ## Support
