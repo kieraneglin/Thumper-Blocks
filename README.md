@@ -2,13 +2,25 @@
 
 **Secure Grip for Seamless Printing**
 
+## Table of Contents
+
+- [Credit](#credit)
+- [Hardware Requirements](#ercf-requirements)
+- [Thumper or Triple-Decky?](#differences-compared-to-triple-decky)
+- [BOM](#bom)
+- [Assembly](#assembly)
+- [Software Configuration](#software-configuration)
+- [Troubleshooting](#troubleshooting)
+- [Support](#support)
+- [Changelog](CHANGELOG.md)
+
 ## NOTE: This is a work-in-progress.
 
 The design has performed very well so far, but it's still going to change as we test and iterate. This project is based off the mature [Triple-Decky][triple-decky] design but some significant changes have been made which may affect the overall performance. Please keep this in mind if you decide to use Thumper.
 
 ## Credit:
 
-This is based heavily off the fantastic [Triple-Decky][triple-decky] project. I've made some improvements based on my own experience and needs, but the core design can be traced back to the original. Thumper Blocks would not exist without the work of gneu42 or any of the testers/contributors to that project.
+This is based heavily off the fantastic [Triple-Decky][triple-decky] project. I've made some improvements based on my own experience and needs, but the core design can be traced back to the original. Thumper Blocks would not exist without the great work of gneu42 or any of the testers/contributors on that project.
 
 ## What is it?
 
@@ -28,9 +40,10 @@ Thumper Blocks are 3-level filament blocks for the ERCF. Their job is threefold:
 ## Differences compared to Triple-Decky
 
 - Shaves 1.75mm off the width of each block
-  - This allows the blocks to fit existing hardware without modification or omitting a filament block
+  - This allows the blocks to fit existing hardware and kits without modification or omitting a filament block
   - If you're already set up for Triple-Decky, it reclaims 10.5mm for every 6 blocks. With this, you can add things like a dedicated bypass block
 - Uses an M4 nut for the filament brake instead of a printed part (low friction) or a grub screw (uncommon part)
+  - Subjectively improves the assembly process by having a one-piece brake design
 - Removes the need for supports on all parts except the tophat for less post-processing
 - Allows for the use of 1 pair of magnets
 - Lets you use N35 magnets instead of N52, but stronger is still better if you have them
@@ -39,7 +52,7 @@ Thumper Blocks are 3-level filament blocks for the ERCF. Their job is threefold:
 - Updates block tolerances for easier assembly
 - Improves tolerances on the latch mechanism
 
-## What hasn't changed
+### What hasn't changed
 
 - Triple-Decky's filament tags will fit in Thumper
 - Removes the need for standalone bearing blocks by integrating bearings into filament blocks
@@ -62,9 +75,12 @@ Additionally, every 3rd block will need 1x MR85ZZ bearing (unchanged)
 
 **Printed Parts**
 
-- 1x [springy] servo arm for your servo of choice
+These are made to be printed in ABS and friends (including ASA) and do not require additional shrinkage compensation, just like the main ERCF files.
+
+- 1x [Springy][springy] servo arm for your servo of choice
+  - NOTE: I've included a backup in this repository just in case, but you should prefer to use the files from Springy
 - 1x every file in the STL folder for each block you want to make
-  - NOTE: files are made to be printed in their default orientation and without supports
+  - NOTE: files are made to be printed in their default orientation and without additional supports
 
 ## Assembly
 
@@ -72,6 +88,7 @@ These instructions are going to be pretty sparse until something closer to the f
 
 **Filament Path**
 
+- Optionally drill out filament path with a 2mm drill bit (should not be required for a well-tuned printer)
 - Insert the ECAS fitting into the front of the block
 - Insert 1x magnet in the hole under the ECAS fitting
   - NOTE: it should oppose the magnet in the base
@@ -88,7 +105,7 @@ These instructions are going to be pretty sparse until something closer to the f
 - Attach the latch with 1x M3x12mm SHCS
   - NOTE: the latch should be able to move freely but not be loose
   - NOTE: seriously, use a 12mm machine screw. Using a 6 or 8 will result in the latch breaking its mount
-- Push 1x M3x8mm SHCS through the hole beside the M4 nut and attach an M3 T-nut on the other side
+- Push 1x M3x8mm SHCS through the hole beside the M4 nut and loosely attach an M3 T-nut on the other side
 - For every 3rd block, insert 1x MR85ZZ bearing into the side hole near where the driven extruder gear will sit
 - Optionally insert filament tag
 
@@ -103,8 +120,7 @@ These instructions are going to be pretty sparse until something closer to the f
 
 - Place (but don't tighten) the driven BMG gear onto the gear motor shaft of the ERCF
 - Slide the base onto the extrusion and slide along the gear-motor shaft until it's in position
-  - NOTE: there are features in the base to help align with the extrusion. Some light backward or forward pressure will help ensure squareness
-  - NOTE: if your selector cart hits the base, you may need to adjust the position of the base using the _other_ alignment feature
+  - NOTE: there are features in the base to help align with the extrusion. Some light backward or forward pressure will help ensure squareness but it's recommended to push the block _away_ from the encoder when squaring so they don't interfere
   - NOTE: every 3rd block should have an MR85ZZ bearing in the base
 - Tighten the M3x8mm SHCS to secure the base to the extrusion
 - Insert the filament path into the base
@@ -112,8 +128,57 @@ These instructions are going to be pretty sparse until something closer to the f
 - Insert the tophat into the filament path
 - Close the latch
 - Repeat until satisfied
+- Confirm that all latches are closed
+- Verify **by hand** that the selector cart/encoder does not hit the blocks when the servo arm is in the `move` position
 
 ![Assembled Block](images/full-block.jpg)
+
+## Software Configuration
+
+To reiterate, Thumper is made to work with [Happy Hare][happy-hare] and its 3-position servo. You may be able to get it to work with a 2-position servo firmware as long as _every_ extruder move is synced, but this is untested and unsupported. Happy Hare will be released soon™!
+
+`mmu_parameters.cfg`:
+
+```
+cad_gate_width: 21.3
+encoder_parking_distance: 18.0
+
+##### For MG90S: #####
+servo_up_angle: 60
+servo_down_angle: 145
+servo_move_angle: 30
+###### For Savox: ####
+# TODO (PRs welcome!)
+######################
+
+# Both of these are optional, but personally I recommend them in general (not just for Thumper)
+sync_to_extruder: 1
+sync_gear_current: 50
+```
+
+## Troubleshooting
+
+**Servo doesn't engage/disengage**
+This is an issue with Springy setup, but you probably have too much spring pretension
+
+**Filament doesn't feed even though the servo is engaged**
+Again, check your Springy setup. You probably need _more_ pretension
+
+**Filament path doesn't open fully**
+Check that adjacent blocks are aligned properly and not rubbing against each other. You should be able to square the blocks against the extrusion, but worst case you can use a piece of receipt paper as a temporary shim during installation (but this shouldn't be neccessary)
+
+**Rattling sound when another block is feeding**
+See above - it's usually from a filament path not opening fully
+
+**Blocks don't seem to bite filament**
+The blocks bite the most when the filament has been parked by the software. Don't stress unless filament is actively moving during a print
+
+**Encoder hits the base**
+There are alignment features in the base to square it to the extrusion. Try loosening the block and pushing it away from the encoder, using _that_ alignment feature to square it, and tightening it back down
+
+## Support
+
+If you have a question, I'm @kierantheman in the Voron Discord. If there's some issue with the design, documentation, etc., please open an issue or PR on GitHub!
 
 [triple-decky]: https://github.com/gneu42/Triple-Decky
 [springy]: https://github.com/moggieuk/ERCF-Springy
