@@ -131,7 +131,7 @@ These instructions are going to be pretty sparse until something closer to the f
 - Confirm that all latches are closed
 - Verify **by hand** that the selector cart/encoder does not hit the blocks when the servo arm is in the `move` position
 
-![Assembled Block](images/full-block.jpg)
+![Assembled Block](Rev_2/images/full-block.jpg)
 
 ## Software Configuration
 
@@ -148,7 +148,9 @@ servo_up_angle: 60
 servo_down_angle: 145
 servo_move_angle: 30
 ###### For Savox: ####
-# TODO (PRs welcome!)
+servo_up_angle: 120
+servo_down_angle: 50
+servo_move_angle: 135
 ######################
 
 # Both of these are optional, but personally I recommend them in general (not just for Thumper)
@@ -160,11 +162,11 @@ sync_gear_current: 50
 
 **Servo doesn't engage/disengage**
 
-This is an issue with Springy setup, but you probably have too much spring pretension
+This is an issue with Springy setup, but you probably have too much spring pre-tension
 
 **Filament doesn't feed even though the servo is engaged**
 
-Again, check your Springy setup. You probably need _more_ pretension
+Again, check your Springy setup. You probably need _more_ pre-tension
 
 **Filament path doesn't open fully**
 
