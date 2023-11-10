@@ -135,7 +135,7 @@ These instructions are going to be pretty sparse until something closer to the f
 
 ## Software Configuration
 
-To reiterate, Thumper is made to work with [Happy Hare][happy-hare] and its 3-position servo. You may be able to get it to work with a 2-position servo firmware as long as _every_ extruder move is synced, but this is untested and unsupported. Happy Hare will be released soon™!
+To reiterate, Thumper is made to work with [Happy Hare][happy-hare] and its 3-position servo. 2-position servo control is not supported, although technically possible if _every_ extruder move is synchronized with the ERCF.
 
 `mmu_parameters.cfg`:
 
