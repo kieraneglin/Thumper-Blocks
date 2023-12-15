@@ -131,7 +131,7 @@ These instructions are going to be pretty sparse until something closer to the f
 - Confirm that all latches are closed
 - Verify **by hand** that the selector cart/encoder does not hit the blocks when the servo arm is in the `move` position
 
-![Assembled Block](STL/Rev_2/images/full-block.jpg)
+![Assembled Block](STL/Rev_3/images/full-block.jpg)
 
 ## Software Configuration
 
