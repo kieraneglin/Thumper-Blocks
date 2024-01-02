@@ -1,9 +1,8 @@
 # ERCF Thumper Blocks (beta)
 
-**Secure Grip for Seamless Printing**
-
 ## Table of Contents
 
+- [Which Block - Thicker or Thinner?](#which-block)
 - [Credit](#credit)
 - [Hardware Requirements](#ercf-requirements)
 - [Thumper or Triple-Decky?](#differences-compared-to-triple-decky)
@@ -39,7 +38,7 @@ Thumper Blocks are 3-level filament blocks for the ERCF. Their job is threefold:
 
 ## Differences compared to Triple-Decky
 
-- Shaves 1.75mm off the width of each block
+- Shaves 1.75mm off the width of each block (on `Thinner` model)
   - This allows the blocks to fit existing hardware and kits without modification or omitting a filament block
   - If you're already set up for Triple-Decky, it reclaims 10.5mm for every 6 blocks. With this, you can add things like a dedicated bypass block
 - Uses an M4 nut for the filament brake instead of a printed part (low friction) or a grub screw (uncommon part)
@@ -57,6 +56,21 @@ Thumper Blocks are 3-level filament blocks for the ERCF. Their job is threefold:
 - Triple-Decky's filament tags will fit in Thumper
 - Removes the need for standalone bearing blocks by integrating bearings into filament blocks
 - The general look, feel, and assembly is very similar to Triple-Decky
+
+## Which Block?
+
+### Thicker
+
+- The official block of the ERCF v2 spec
+- Has width compatibility with Triple-Decky so accessories (such as the ERCP filament buffer) will fit
+- **Use this if you're using ERCF v2 hardware OR you want to upgrade a v1 to an offical v2 but you don't mind losing a filament block**
+
+### Thinner
+
+- 1.75mm thinner per-block than the Thicker model
+- Does not remove a block when using ERCF v1 hardware
+- Does not conform to the ERCF v2 spec - the filament bypass and some accessories will not fit
+- **Use this if you're on ERCF v1 hardware and you don't want to lose a filament block**
 
 ## BOM
 
